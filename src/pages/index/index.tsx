@@ -5,6 +5,8 @@ import { useRecords } from '@/hooks/useRecords'
 import { useAuthStore } from '@/stores/auth'
 import './index.scss'
 
+import KOI_LOGO from '../../assets/icons/koi-logo.png'
+
 const tools = [
   {
     key: 'meeting',

@@ -57,10 +57,12 @@
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-sm);
+  overflow: hidden;
 }
 
-.profile-avatar-icon {
-  font-size: 64rpx;
+.profile-avatar-img {
+  width: 100%;
+  height: 100%;
 }
 
 .profile-name {

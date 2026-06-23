@@ -1,8 +1,10 @@
-import { View, Text, ScrollView } from '@tarojs/components'
+import { View, Text, ScrollView, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { useEffect } from 'react'
 import { useAuthStore } from '@/stores/auth'
 import './index.scss'
+
+import KOI_LOGO from '../../assets/icons/koi-logo.png'
 
 export default function ProfilePage() {
   const { user, isAuthenticated, logout } = useAuthStore()
@@ -54,12 +56,7 @@ export default function ProfilePage() {
       {/* User card */}
       <View className='profile-card'>
         <View className='profile-avatar'>
-          <Text className='profile-avatar-icon'>
-            {user?.avatarUrl ? '' : '🎋'}
-          </Text>
-          {user?.avatarUrl && (
-            <Text className='profile-avatar-url'>{user.avatarUrl}</Text>
-          )}
+          <Image className='profile-avatar-img' src={KOI_LOGO} mode='aspectFit' />
         </View>
         <Text className='profile-name'>{user?.displayName || '锦鲤用户'}</Text>
         {user?.handle && (
