@@ -218,7 +218,7 @@ export class AsrService {
       format: 'PCM',
       sampleRate: 16000,
       numberOfChannels: 1,
-      encodeBitRate: 256000,
+      encodeBitRate: 96000, // Max allowed: 96000 bps
       frameSize: 80, // 50ms per frame at 16kHz
     })
   }
