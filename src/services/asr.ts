@@ -109,13 +109,18 @@ export class AsrService {
     this._setState('connecting')
 
     // Connect WebSocket
-    this.socketTask = await Taro.connectSocket({
+    const socketTask = await Taro.connectSocket({
       url: wsUrl,
-      success: () => {},
       fail: (err) => {
         this._emitError(`WebSocket 连接失败：${JSON.stringify(err)}`)
       },
     })
+
+    if (!socketTask) {
+      throw new Error('WebSocket 连接失败')
+    }
+
+    this.socketTask = socketTask
 
     // Wait for ready signal
     await this._waitForReady()
@@ -167,25 +172,26 @@ export class AsrService {
   private async _startRecording(): Promise<void> {
     this.recorder = Taro.getRecorderManager()
 
-    this.recorder.onStart(() => {
-      // Recording started
+    // Set up ALL listeners BEFORE starting
+    this.recorder.onError((err) => {
+      this._emitError(`录音错误：${err.errMsg}`)
     })
 
-    ;(this.recorder as Taro.RecorderManager & {
-      onInt8DataReceived?: (cb: (data: { buffer: ArrayBuffer }) => void) => void
-    }).onInt8DataReceived?.((data) => {
-      if (this._isRunning && this.socketTask) {
+    // Use onFrameRecorded for streaming audio data
+    this.recorder.onFrameRecorded((res) => {
+      if (this._isRunning && this.socketTask && res.frameBuffer) {
         this.socketTask.send({
-          data: data.buffer as ArrayBuffer,
+          data: res.frameBuffer,
           fail: () => {},
         })
       }
     })
 
-    this.recorder.onError((err) => {
-      this._emitError(`录音错误：${err.errMsg}`)
+    this.recorder.onStop((res) => {
+      // Recording stopped
     })
 
+    // Set up WebSocket message handler
     this.socketTask?.onMessage((res) => {
       // Handle messages that come after ready
       try {
@@ -207,11 +213,13 @@ export class AsrService {
       }
     })
 
+    // Start recording
     this.recorder.start({
       format: 'PCM',
       sampleRate: 16000,
       numberOfChannels: 1,
       encodeBitRate: 256000,
+      frameSize: 80, // 50ms per frame at 16kHz
     })
   }
 
