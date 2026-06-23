@@ -1,4 +1,4 @@
-import { View, Text, ScrollView } from '@tarojs/components'
+import { View, Text, ScrollView, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import RecordCard from '@/components/RecordCard'
 import { useRecords } from '@/hooks/useRecords'
@@ -65,7 +65,7 @@ export default function HomePage() {
       <View className='home-header'>
         <View className='home-header-row'>
           <View className='home-logo'>
-            <Text className='home-logo-icon'>🎋</Text>
+            <Image className='home-logo-icon' src='/assets/icons/koi-logo-128.png' mode='aspectFit' />
           </View>
           <Text className='home-title'>KoiNote</Text>
         </View>
