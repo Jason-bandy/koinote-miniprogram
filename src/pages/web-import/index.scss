@@ -1,0 +1,149 @@
+.web-import-page {
+  min-height: 100vh;
+  background-color: var(--color-bg-page);
+}
+
+.web-import-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+}
+
+.web-import-close {
+  font-size: var(--text-18);
+  color: var(--color-text-primary);
+}
+
+.web-import-title {
+  flex: 1;
+  font-size: var(--text-16);
+  font-weight: var(--font-medium);
+  color: var(--color-web-link-text);
+  text-align: center;
+}
+
+.web-import-content {
+  padding: var(--space-md);
+}
+
+/* Hero */
+.web-import-hero {
+  background-color: var(--color-web-link-bg);
+  border-radius: var(--radius-lg);
+  border: var(--border-thin) solid var(--color-web-link);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.web-import-hero-icon {
+  font-size: 96rpx;
+}
+
+.web-import-hero-title {
+  font-size: var(--text-16);
+  font-weight: var(--font-medium);
+  color: var(--color-web-link-text);
+  margin-top: var(--space-sm);
+}
+
+.web-import-hero-sub {
+  font-size: var(--text-12);
+  color: var(--color-web-link);
+  margin-top: 8rpx;
+}
+
+/* URL input */
+.url-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  border: var(--border-thin) solid var(--color-border);
+}
+
+.url-input--disabled {
+  opacity: 0.6;
+}
+
+.url-input-field {
+  flex: 1;
+  font-size: var(--text-14);
+}
+
+.url-clear {
+  font-size: var(--text-16);
+  color: var(--color-text-hint);
+  padding: var(--space-xs);
+}
+
+/* Error */
+.error-message {
+  margin-top: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-danger-bg, #FEE2E2);
+  border-radius: var(--radius-sm);
+  border: var(--border-thin) solid var(--color-danger);
+  font-size: var(--text-12);
+  color: var(--color-danger);
+}
+
+/* Submit */
+.submit-btn {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  background-color: var(--color-web-link);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  text-align: center;
+  font-size: var(--text-15);
+  font-weight: var(--font-medium);
+}
+
+.submit-btn--disabled {
+  opacity: 0.5;
+}
+
+/* Supported sources */
+.supported-sources {
+  margin-top: var(--space-2xl);
+}
+
+.source-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: var(--space-sm);
+}
+
+.source-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.source-icon {
+  width: 88rpx;
+  height: 88rpx;
+  background-color: var(--color-web-link-bg);
+  border-radius: var(--radius-md);
+  border: var(--border-thin) solid var(--color-web-link);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.source-icon text {
+  font-size: 44rpx;
+}
+
+.source-label {
+  font-size: var(--text-11);
+  color: var(--color-text-hint);
+  margin-top: var(--space-xs);
+}

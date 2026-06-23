@@ -1,0 +1,136 @@
+.search-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+}
+
+.search-input {
+  flex: 1;
+  height: 64rpx;
+  font-size: var(--text-14);
+}
+
+.search-clear {
+  font-size: var(--text-16);
+  color: var(--color-text-hint);
+  margin-left: var(--space-xs);
+  padding: var(--space-xs);
+}
+
+.search-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-md);
+}
+
+.search-idle {
+  display: flex;
+  flex-direction: column;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.tag-chip {
+  padding: 14rpx 24rpx;
+  border-radius: var(--radius-pill);
+  border: var(--border-thin) solid var(--color-border-hover);
+  background-color: var(--color-bg-card);
+  font-size: var(--text-13);
+  color: var(--color-text-body);
+}
+
+.suggestion-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--space-sm) 0;
+  border-bottom: var(--border-thin) solid var(--color-border);
+}
+
+.suggestion-icon {
+  font-size: var(--text-16);
+  margin-right: var(--space-sm);
+}
+
+.suggestion-text {
+  font-size: var(--text-13);
+  color: var(--color-text-primary);
+}
+
+.loading-wrapper,
+.error-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl) 0;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl) var(--space-md);
+  color: var(--color-text-hint);
+}
+
+.record-card {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  border: var(--border-thin) solid var(--color-border);
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.record-card-type-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.record-type-chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6rpx 16rpx;
+  border-radius: var(--radius-pill);
+}
+
+.record-type-label {
+  font-size: var(--text-11);
+}
+
+.record-card-title {
+  font-size: var(--text-14);
+  font-weight: var(--font-medium);
+  color: var(--color-text-primary);
+  margin-top: var(--space-sm);
+  display: block;
+}
+
+.record-card-summary {
+  font-size: var(--text-13);
+  color: var(--color-text-body);
+  margin-top: var(--space-xs);
+  line-height: var(--leading-relaxed);
+  display: block;
+}
+
+.record-card-time {
+  font-size: var(--text-11);
+  color: var(--color-text-hint);
+  margin-top: var(--space-sm);
+  display: block;
+}

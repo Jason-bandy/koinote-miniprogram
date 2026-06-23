@@ -1,0 +1,162 @@
+.meeting-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg-page);
+}
+
+.meeting-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+}
+
+.meeting-close {
+  font-size: var(--text-18);
+  color: var(--color-text-primary);
+}
+
+.meeting-title {
+  flex: 1;
+  text-align: center;
+  font-size: var(--text-16);
+  font-weight: var(--font-medium);
+  color: var(--color-meeting-text);
+}
+
+.mode-toggle {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--color-meeting-bg);
+  border-radius: var(--radius-sm);
+  padding: 6rpx;
+}
+
+.mode-tab {
+  padding: 12rpx 20rpx;
+  border-radius: var(--radius-sm);
+  font-size: var(--text-12);
+  color: var(--color-text-hint);
+}
+
+.mode-tab--active {
+  background-color: #ffffff;
+  font-weight: var(--font-medium);
+  color: var(--color-meeting-text);
+}
+
+.meeting-transcript {
+  flex: 1;
+  padding: var(--space-md);
+}
+
+.meeting-idle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl);
+}
+
+.meeting-idle-icon {
+  font-size: 112rpx;
+  opacity: 0.5;
+}
+
+.meeting-idle-text {
+  font-size: var(--text-16);
+  color: var(--color-text-hint);
+  margin-top: var(--space-lg);
+  text-align: center;
+}
+
+.meeting-idle-sub {
+  font-size: var(--text-13);
+  color: var(--color-text-hint);
+  margin-top: var(--space-sm);
+  text-align: center;
+}
+
+.transcript-line {
+  font-size: var(--text-16);
+  line-height: var(--leading-loose);
+  color: var(--color-text-primary);
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.transcript-line--partial {
+  color: var(--color-text-hint);
+}
+
+.meeting-error {
+  padding: 0 var(--space-md) var(--space-xs);
+  text-align: center;
+  font-size: var(--text-12);
+  color: var(--color-danger);
+}
+
+.meeting-timer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm);
+}
+
+.meeting-rec-dot {
+  width: 16rpx;
+  height: 16rpx;
+  background-color: var(--color-danger);
+  border-radius: 50%;
+  margin-right: var(--space-sm);
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.meeting-timer-text {
+  font-size: var(--text-32);
+  font-weight: var(--font-normal);
+  color: var(--color-text-primary);
+}
+
+.meeting-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-md);
+  border-top: var(--border-thin) solid var(--color-border);
+}
+
+.record-btn {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background-color: var(--color-meeting);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.record-btn--recording {
+  background-color: var(--color-danger);
+}
+
+.record-btn--loading {
+  background-color: var(--color-border);
+}
+
+.record-btn-text {
+  font-size: 72rpx;
+}
+
+.meeting-status {
+  font-size: var(--text-13);
+  color: var(--color-meeting);
+  margin-top: var(--space-sm);
+}

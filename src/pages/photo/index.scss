@@ -1,0 +1,115 @@
+.photo-page {
+  min-height: 100vh;
+  background-color: var(--color-bg-page);
+}
+
+.photo-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: var(--border-thin) solid var(--color-border);
+}
+
+.photo-close {
+  font-size: var(--text-18);
+  color: var(--color-text-primary);
+}
+
+.photo-title {
+  flex: 1;
+  font-size: var(--text-16);
+  font-weight: var(--font-medium);
+  color: var(--color-photo-text);
+  text-align: center;
+}
+
+.photo-choose {
+  padding: var(--space-lg) var(--space-md);
+}
+
+.scene-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.scene-chip {
+  padding: 16rpx 28rpx;
+  border-radius: var(--radius-sm);
+  border: var(--border-thin) solid var(--color-border-hover);
+  font-size: var(--text-13);
+  color: var(--color-text-body);
+}
+
+.scene-chip--active {
+  background-color: var(--color-photo-bg);
+  border-color: var(--color-photo);
+  font-weight: var(--font-medium);
+  color: var(--color-photo-text);
+}
+
+.photo-actions {
+  margin-top: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.photo-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  background-color: var(--color-photo);
+  color: #ffffff;
+  border-radius: var(--radius-md);
+  font-size: var(--text-14);
+  font-weight: var(--font-medium);
+  text-align: center;
+}
+
+.photo-btn--outline {
+  background-color: transparent;
+  border: var(--border-thin) solid var(--color-photo);
+  color: var(--color-photo);
+}
+
+.photo-processing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl);
+}
+
+.photo-processing-text {
+  font-size: var(--text-15);
+  color: var(--color-photo-text);
+  margin-top: var(--space-md);
+}
+
+.photo-processing-sub {
+  font-size: var(--text-13);
+  color: var(--color-text-hint);
+  margin-top: var(--space-sm);
+  text-align: center;
+}
+
+.photo-preview {
+  padding: var(--space-lg) var(--space-md);
+}
+
+.photo-preview-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--text-12);
+  color: var(--color-text-hint);
+}
+
+.photo-preview-rechoose {
+  color: var(--color-photo);
+}

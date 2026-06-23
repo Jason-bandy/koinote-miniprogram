@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.hbuilderx/
+.sourcemaps/
+.swc/
+*.local
+.DS_Store

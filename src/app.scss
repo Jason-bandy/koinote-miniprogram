@@ -1,0 +1,37 @@
+@import './styles/variables.scss';
+@import './styles/base.scss';
+
+// ── App-level shared styles ──────────────────────────────────────────────────
+
+.container {
+  padding: var(--space-md);
+}
+
+.container-full {
+  padding: 0 var(--space-md);
+}
+
+.section-title {
+  font-size: var(--text-14);
+  font-weight: var(--font-medium);
+  color: var(--color-text-primary);
+}
+
+.subtext {
+  font-size: var(--text-11);
+  color: var(--color-text-hint);
+}
+
+.divider {
+  height: var(--border-thin);
+  background-color: var(--color-border);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3xl) var(--space-md);
+  color: var(--color-text-hint);
+}

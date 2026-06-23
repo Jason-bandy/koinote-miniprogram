@@ -1,0 +1,94 @@
+// ── Design Tokens (from app_colors.dart) ──────────────────────────────────────
+
+page {
+  // Brand
+  --color-brand: #0F172A;
+
+  // 4 Tool colors
+  --color-meeting: #185FA5;
+  --color-meeting-bg: #E6F1FB;
+  --color-meeting-text: #0C447C;
+
+  --color-idea: #534AB7;
+  --color-idea-bg: #EEEDFE;
+  --color-idea-text: #3C3489;
+
+  --color-photo: #0F6E56;
+  --color-photo-bg: #E1F5EE;
+  --color-photo-text: #085041;
+
+  --color-summary: #854F0B;
+  --color-summary-bg: #FAEEDA;
+  --color-summary-text: #633806;
+
+  --color-web-link: #3D6A8A;
+  --color-web-link-bg: #E8F2FA;
+  --color-web-link-text: #254F6C;
+
+  // Semantic
+  --color-success: #1D9E75;
+  --color-warning: #EF9F27;
+  --color-danger: #E24B4A;
+  --color-neutral: #5F5E5A;
+
+  // Neutrals - Light
+  --color-bg-page: #FFFFFF;
+  --color-bg-card: #FAFAF9;
+  --color-bg-dark: #2C2C2A;
+
+  --color-text-primary: #0F172A;
+  --color-text-body: #444441;
+  --color-text-hint: #888780;
+
+  // Borders
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-hover: rgba(0, 0, 0, 0.15);
+
+  // Dark mode
+  --color-bg-page-dark: #0F0F0F;
+  --color-bg-card-dark: #1A1A1A;
+  --color-text-primary-dark: #F8FAFC;
+  --color-border-dark: rgba(255, 255, 255, 0.10);
+
+  // Sizing (rpx based on 750px viewport)
+  --radius-sm: 8rpx;
+  --radius-md: 12rpx;
+  --radius-lg: 16rpx;
+  --radius-xl: 20rpx;
+  --radius-pill: 999rpx;
+
+  // Spacing (4px unit → 8rpx)
+  --space-xs: 8rpx;
+  --space-sm: 16rpx;
+  --space-md: 24rpx;
+  --space-lg: 32rpx;
+  --space-xl: 40rpx;
+  --space-2xl: 48rpx;
+  --space-3xl: 64rpx;
+
+  // Font sizes (px → rpx, 2x)
+  --text-10: 20rpx;
+  --text-11: 22rpx;
+  --text-12: 24rpx;
+  --text-13: 26rpx;
+  --text-14: 28rpx;
+  --text-15: 30rpx;
+  --text-16: 32rpx;
+  --text-18: 36rpx;
+  --text-20: 40rpx;
+  --text-24: 48rpx;
+  --text-32: 64rpx;
+
+  // Borders
+  --border-thin: 0.5px;
+
+  // Font weights
+  --font-normal: 400;
+  --font-medium: 500;
+
+  // Line heights
+  --leading-tight: 1.4;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.7;
+  --leading-loose: 1.8;
+}

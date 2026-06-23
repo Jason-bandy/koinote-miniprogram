@@ -1,0 +1,123 @@
+.detail-page {
+  min-height: 100vh;
+  background-color: var(--color-bg-page);
+}
+
+.detail-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-bg-page);
+  border-bottom: var(--border-thin) solid var(--color-border);
+}
+
+.detail-back {
+  font-size: var(--text-18);
+  color: var(--color-text-primary);
+}
+
+.detail-title {
+  font-size: var(--text-16);
+  font-weight: var(--font-medium);
+}
+
+.detail-content {
+  padding: var(--space-md);
+}
+
+.detail-record-title {
+  font-size: var(--text-20);
+  font-weight: var(--font-medium);
+  color: var(--color-text-primary);
+  display: block;
+}
+
+.detail-time {
+  font-size: var(--text-12);
+  color: var(--color-text-hint);
+}
+
+.section-label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: var(--text-14);
+  font-weight: var(--font-medium);
+  margin-bottom: var(--space-sm);
+}
+
+.content-card {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  border: var(--border-thin) solid var(--color-border);
+  padding: var(--space-md);
+}
+
+.content-text {
+  font-size: var(--text-13);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-primary);
+}
+
+.processing-card {
+  background-color: var(--color-meeting-bg);
+  border-radius: var(--radius-md);
+  border: var(--border-thin) solid var(--color-meeting);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.processing-text {
+  font-size: var(--text-14);
+  font-weight: var(--font-medium);
+  color: var(--color-meeting);
+  display: block;
+}
+
+.processing-sub {
+  font-size: var(--text-12);
+  color: var(--color-text-hint);
+  margin-top: 8rpx;
+  display: block;
+}
+
+.error-card {
+  background-color: rgba(217, 48, 40, 0.08);
+  border-radius: var(--radius-md);
+  border: var(--border-thin) solid rgba(217, 48, 40, 0.3);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.error-card-title {
+  font-size: var(--text-14);
+  font-weight: var(--font-medium);
+  color: var(--color-danger, #d93028);
+  display: block;
+}
+
+.error-card-message {
+  font-size: var(--text-12);
+  color: var(--color-text-hint);
+  margin-top: 8rpx;
+  display: block;
+}
+
+.detail-note-content {
+  font-size: var(--text-13);
+  line-height: var(--leading-loose);
+  color: var(--color-text-primary);
+}
+
+.detail-loading,
+.detail-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}

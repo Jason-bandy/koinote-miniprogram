@@ -1,0 +1,146 @@
+.record-card {
+  background-color: var(--color-bg-card);
+  border-radius: 24rpx;
+  border: var(--border-thin) solid var(--color-border);
+  padding: 32rpx;
+}
+
+.record-card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.record-card-header-spacer {
+  flex: 1;
+}
+
+.record-type-chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 6rpx 16rpx;
+  border-radius: var(--radius-pill);
+}
+
+.record-type-icon {
+  font-size: 20rpx;
+  line-height: 1;
+}
+
+.record-type-label {
+  font-size: var(--text-11);
+  margin-left: 8rpx;
+  line-height: 1.4;
+}
+
+.record-status {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 4rpx 14rpx;
+  border-radius: 8rpx;
+  margin-right: 16rpx;
+}
+
+.record-status--processing {
+  background-color: var(--color-meeting-bg);
+}
+
+.record-status--error {
+  background-color: rgba(226, 75, 74, 0.10);
+}
+
+.record-status-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 999rpx;
+  background-color: var(--color-meeting);
+  margin-right: 8rpx;
+}
+
+.record-status-text {
+  font-size: var(--text-10);
+  color: var(--color-meeting);
+}
+
+.record-status-text--error {
+  color: var(--color-danger);
+}
+
+.record-star {
+  font-size: 36rpx;
+  color: var(--color-text-hint);
+  line-height: 1;
+  padding: 4rpx;
+}
+
+.record-star--active {
+  color: var(--color-warning);
+}
+
+.record-card-title {
+  font-size: var(--text-14);
+  font-weight: var(--font-medium);
+  color: var(--color-text-primary);
+  margin-top: 20rpx;
+  line-height: 1.5;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.record-card-title--error {
+  color: var(--color-danger);
+}
+
+.record-card-summary {
+  font-size: var(--text-13);
+  color: var(--color-text-body);
+  margin-top: 12rpx;
+  line-height: 1.6;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.record-tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 20rpx;
+}
+
+.record-tag {
+  font-size: var(--text-11);
+  background-color: rgba(15, 23, 42, 0.04);
+  border-radius: 8rpx;
+  padding: 4rpx 14rpx;
+  margin-right: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.record-card-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.record-footer-icon,
+.record-card-time,
+.record-footer-separator {
+  font-size: var(--text-12);
+  color: var(--color-text-hint);
+  line-height: 1.4;
+}
+
+.record-footer-icon {
+  margin-right: 8rpx;
+}
+
+.record-footer-separator {
+  margin: 0 16rpx;
+}
