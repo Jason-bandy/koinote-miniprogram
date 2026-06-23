@@ -2,7 +2,7 @@
  * API methods — mirrors api_client.dart
  */
 import Taro from '@tarojs/taro'
-import { request } from './request'
+import { request, getToken } from './request'
 import { API_BASE_URL } from '@/utils/constants'
 import type {
   ListRecordsResponse,
@@ -93,18 +93,21 @@ export async function uploadAudio(params: {
   mode: string
   title?: string
 }): Promise<UploadAudioResponse> {
-  // Use Taro.uploadFile for multipart
+  const token = await import('./request').then((m) => m.getToken())
   const formData: Record<string, unknown> = {
     mode: params.mode,
   }
   if (params.title) formData['title'] = params.title
+
+  const header: Record<string, string> = {}
+  if (token) header['Authorization'] = `Bearer ${token}`
 
   const res = await Taro.uploadFile({
     url: `${API_BASE_URL}/api/v1/records/audio`,
     filePath: params.filePath,
     name: 'audio',
     formData,
-    header: {}, // Token will be handled by request wrapper separately
+    header,
   })
 
   return JSON.parse(res.data as string)
@@ -129,13 +132,16 @@ export async function uploadImagesOcr(params: {
   filePaths: string[]
   scene: string
 }): Promise<RecordDetail> {
-  // Upload first image (backend expects multipart)
+  const token = await getToken()
+  const header: Record<string, string> = {}
+  if (token) header['Authorization'] = `Bearer ${token}`
+
   const res = await Taro.uploadFile({
     url: `${API_BASE_URL}/api/v1/records/image-ocr`,
     filePath: params.filePaths[0],
     name: 'images',
     formData: { scene: params.scene },
-    header: {},
+    header,
   })
 
   return JSON.parse(res.data as string)
@@ -145,12 +151,16 @@ export async function extractTextFromImage(params: {
   filePath: string
   scene?: string
 }): Promise<string> {
+  const token = await getToken()
+  const header: Record<string, string> = {}
+  if (token) header['Authorization'] = `Bearer ${token}`
+
   const res = await Taro.uploadFile({
     url: `${API_BASE_URL}/api/v1/ai/ocr-text`,
     filePath: params.filePath,
     name: 'image',
     formData: { scene: params.scene ?? 'unknown' },
-    header: {},
+    header,
   })
 
   const json = JSON.parse(res.data as string)

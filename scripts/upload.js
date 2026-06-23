@@ -18,8 +18,8 @@ async function upload () {
   const result = await ci.upload({
     project,
     robot: 1,
-    version: '1.0.0',
-    desc: 'KoiNote miniprogram first release',
+    version: '1.0.1',
+    desc: 'fix: auth token, upload headers, and add tab bar icons',
     setting: {
       es6: true,
       enhance: true,

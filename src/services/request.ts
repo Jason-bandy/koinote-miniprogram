@@ -17,7 +17,8 @@ export interface Response<T = unknown> {
   statusCode: number
 }
 
-async function getToken(): Promise<string | undefined> {
+/** Public getter for the stored token (for uploadFile headers, etc.). */
+export async function getToken(): Promise<string | undefined> {
   try {
     return Taro.getStorageSync(TOKEN_STORAGE_KEY)
   } catch {
@@ -25,10 +26,14 @@ async function getToken(): Promise<string | undefined> {
   }
 }
 
+async function _getToken(): Promise<string | undefined> {
+  return getToken()
+}
+
 async function fetchDevToken(): Promise<string | undefined> {
   try {
     const res = await Taro.request<Record<string, unknown>>({
-      url: `${API_BASE_URL}/api/v1/auth/dev-token`,
+      url: `${API_BASE_URL}/api/v1/auth/demo-token`,
       method: 'POST',
       timeout: 10000,
     })

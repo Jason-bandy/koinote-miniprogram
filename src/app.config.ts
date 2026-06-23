@@ -22,18 +22,26 @@ export default {
       {
         pagePath: 'pages/index/index',
         text: '首页',
+        iconPath: 'assets/icons/home.png',
+        selectedIconPath: 'assets/icons/home-active.png',
       },
       {
         pagePath: 'pages/library/index',
         text: '知识库',
+        iconPath: 'assets/icons/library.png',
+        selectedIconPath: 'assets/icons/library-active.png',
       },
       {
         pagePath: 'pages/search/index',
         text: '搜索',
+        iconPath: 'assets/icons/search.png',
+        selectedIconPath: 'assets/icons/search-active.png',
       },
       {
         pagePath: 'pages/profile/index',
         text: '我的',
+        iconPath: 'assets/icons/profile.png',
+        selectedIconPath: 'assets/icons/profile-active.png',
       },
     ],
   },
