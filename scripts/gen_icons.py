@@ -1,40 +1,49 @@
 #!/usr/bin/env python3
-"""Generate tab bar icons for WeChat mini program (81x81 outline style)."""
+"""Generate Material Icons style tab bar icons for WeChat mini program (81x81)."""
 import subprocess
 import os
 
+# Material Icons style - outline for inactive, filled for active
 ICONS = {
-    "home": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <polygon points="3 10 12 3 21 10 21 20 17 20 17 14 7 14 7 20 3 20"/>
+    # Home: house outline vs filled
+    "home": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888780" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
+  <path d="M9 22V12h6v10"/>
 </svg>""",
-    "home-active": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0F172A" stroke="#0F172A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <polygon points="3 10 12 3 21 10 21 20 17 20 17 14 7 14 7 20 3 20"/>
+    "home-active": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0F172A" stroke="none">
+  <path d="m3 10 9-7 9 7v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
+  <path d="M9 22V12h6v10" fill="#FFFFFF"/>
 </svg>""",
-    "library": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="3" y="4" width="4" height="16"/>
-  <rect x="10" y="4" width="4" height="16"/>
-  <rect x="17" y="4" width="4" height="16"/>
+    # Library/Grid: grid outline vs filled
+    "library": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888780" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <rect width="7" height="7" x="3" y="3" rx="1"/>
+  <rect width="7" height="7" x="14" y="3" rx="1"/>
+  <rect width="7" height="7" x="14" y="14" rx="1"/>
+  <rect width="7" height="7" x="3" y="14" rx="1"/>
 </svg>""",
-    "library-active": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0F172A" stroke="#0F172A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="3" y="4" width="4" height="16"/>
-  <rect x="10" y="4" width="4" height="16"/>
-  <rect x="17" y="4" width="4" height="16"/>
+    "library-active": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0F172A" stroke="none">
+  <rect width="7" height="7" x="3" y="3" rx="1"/>
+  <rect width="7" height="7" x="14" y="3" rx="1"/>
+  <rect width="7" height="7" x="14" y="14" rx="1"/>
+  <rect width="7" height="7" x="3" y="14" rx="1"/>
 </svg>""",
-    "search": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <circle cx="11" cy="11" r="7"/>
-  <line x1="16" y1="16" x2="21" y2="21"/>
+    # Search: magnifying glass outline vs filled
+    "search": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888780" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="11" cy="11" r="8"/>
+  <path d="m21 21-4.3-4.3"/>
 </svg>""",
-    "search-active": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#0F172A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <circle cx="11" cy="11" r="7"/>
-  <line x1="16" y1="16" x2="21" y2="21"/>
+    "search-active": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0F172A" stroke="none">
+  <circle cx="11" cy="11" r="8"/>
+  <path d="m21 21-4.3-4.3" stroke="#FFFFFF" stroke-width="2"/>
 </svg>""",
-    "profile": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <circle cx="12" cy="8" r="4"/>
-  <path d="M4 20c0-4 4-7 8-7s8 3 8 7"/>
+    # Profile/Person: person outline vs filled
+    "profile": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888780" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="8" r="5"/>
+  <path d="M20 21a8 8 0 0 0-16 0"/>
 </svg>""",
-    "profile-active": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0F172A" stroke="#0F172A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <circle cx="12" cy="8" r="4"/>
-  <path d="M4 20c0-4 4-7 8-7s8 3 8 7"/>
+    "profile-active": """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0F172A" stroke="none">
+  <circle cx="12" cy="8" r="5"/>
+  <path d="M20 21a8 8 0 0 0-16 0"/>
 </svg>""",
 }
 
