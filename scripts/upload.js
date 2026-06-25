@@ -18,8 +18,8 @@ async function upload () {
   const result = await ci.upload({
     project,
     robot: 1,
-    version: '1.0.3',
-    desc: '录音登录检查：未登录提示跳转，微信登录后可直接录音',
+    version: '1.0.4',
+    desc: '新增删除个人数据：Profile 页面可删除记录/标签/报告，保留账号',
     setting: {
       es6: true,
       enhance: true,
