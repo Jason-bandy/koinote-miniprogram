@@ -12,6 +12,7 @@ export default {
     'pages/meeting/index',
     'pages/photo/index',
     'pages/web-import/index',
+    'pages/webview/index',
   ],
   tabBar: {
     color: '#888780',

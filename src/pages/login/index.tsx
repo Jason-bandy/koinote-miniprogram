@@ -94,6 +94,18 @@ export default function LoginPage() {
     Taro.navigateBack()
   }
 
+  const openUserAgreement = () => {
+    Taro.navigateTo({
+      url: '/pages/webview/index?url=https://api.transkoi.luckjingle.com/api/apis/public/webview/appArticles/502',
+    })
+  }
+
+  const openPrivacyPolicy = () => {
+    Taro.navigateTo({
+      url: '/pages/webview/index?url=https://api.transkoi.luckjingle.com/api/apis/public/webview/appArticles/500',
+    })
+  }
+
   return (
     <View className='login-page'>
       {/* Back button */}
@@ -137,8 +149,22 @@ export default function LoginPage() {
           </View>
 
           <Text className='login-tip'>
-            首次微信登录后将引导绑定手机或邮箱
+            首次登录将自动创建账号
           </Text>
+
+          {/* Agreement links for WeChat mode */}
+          <View className='login-agreement'>
+            <Text className='login-agreement-text'>
+              点击登录即表示同意{' '}
+              <Text className='login-agreement-link' onClick={openUserAgreement}>
+                《用户协议》
+              </Text>
+              和{' '}
+              <Text className='login-agreement-link' onClick={openPrivacyPolicy}>
+                《隐私政策》
+              </Text>
+            </Text>
+          </View>
         </View>
       )}
 
@@ -239,6 +265,15 @@ export default function LoginPage() {
 
       {/* Footer */}
       <View className='login-footer'>
+        <View className='login-footer-links'>
+          <Text className='login-footer-link' onClick={openUserAgreement}>
+            用户协议
+          </Text>
+          <Text className='login-footer-divider'>|</Text>
+          <Text className='login-footer-link' onClick={openPrivacyPolicy}>
+            隐私政策
+          </Text>
+        </View>
         <Text className='login-footer-text'>
           继续使用即表示同意我们的条款
         </Text>

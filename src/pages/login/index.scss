@@ -130,6 +130,32 @@
   margin-bottom: var(--space-md);
 }
 
+/* WeChat tip */
+.login-tip {
+  font-size: var(--text-12);
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+  margin-top: var(--space-md);
+}
+
+/* WeChat agreement */
+.login-agreement {
+  padding: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.login-agreement-text {
+  font-size: var(--text-11);
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  line-height: var(--leading-relaxed);
+}
+
+.login-agreement-link {
+  color: var(--color-idea);
+  font-weight: var(--font-medium);
+}
+
 .input-label {
   font-size: var(--text-12);
   color: rgba(255, 255, 255, 0.6);
@@ -209,6 +235,25 @@
 .login-footer {
   padding: var(--space-lg) 0;
   text-align: center;
+}
+
+.login-footer-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-sm);
+}
+
+.login-footer-link {
+  font-size: var(--text-12);
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.login-footer-divider {
+  font-size: var(--text-12);
+  color: rgba(255, 255, 255, 0.3);
+  margin: 0 var(--space-md);
 }
 
 .login-footer-text {
