@@ -1,8 +1,10 @@
-import { View, Text, Input } from '@tarojs/components'
+import { View, Text, Input, Image } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import { useState } from 'react'
 import { useAuthStore } from '@/stores/auth'
 import './index.scss'
+
+import KOI_LOGO from '../../assets/icons/koi-logo.png'
 
 type SubMode = 'register' | 'login'
 type PageMode = 'wechat' | 'nickname'
@@ -86,7 +88,7 @@ export default function LoginPage() {
 
       {/* Header */}
       <View className='login-header'>
-        <Text className='login-logo'>🎋</Text>
+        <Image className='login-logo' src={KOI_LOGO} mode='aspectFit' />
         <Text className='login-title'>KoiNote</Text>
         <Text className='login-subtitle'>AI 智能笔记，你的第二大脑</Text>
       </View>

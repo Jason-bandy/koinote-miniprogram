@@ -36,29 +36,17 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     if (token) {
       set({ token, isAuthenticated: true })
       await get().fetchProfile()
-    } else {
-      // Pre-fetch demo token so that the first API call on the home page
-      // doesn't silently fail — the /demo-token endpoint is available in
-      // all environments for App Review and testing purposes.
-      const { request } = await import('@/services/request')
-      try {
-        const res = await request<{ access_token: string }>({
-          url: '/api/v1/auth/demo-token',
-          method: 'POST',
-          timeout: 10000,
-        })
-        const demoToken = res.access_token
-        Taro.setStorageSync(TOKEN_STORAGE_KEY, demoToken)
-        set({ token: demoToken, isAuthenticated: true })
-        await get().fetchProfile()
-      } catch {
-        // demo-token unavailable — user will need to log in manually
-      }
     }
+    // Do NOT auto-fetch demo token — user starts unauthenticated and can
+    // choose to log in via WeChat or other methods
   },
 
   wxLogin: async () => {
     try {
+      // Clear any existing token (e.g., demo token) before WeChat login
+      Taro.removeStorageSync(TOKEN_STORAGE_KEY)
+      set({ token: null, isAuthenticated: false })
+
       const { code } = await Taro.login()
       const res = await request<{ access_token: string; is_bound: boolean }>({
         url: '/api/v1/auth/wx-login',

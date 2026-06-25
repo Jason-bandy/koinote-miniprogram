@@ -3,6 +3,7 @@ import { API_BASE_URL, TOKEN_STORAGE_KEY } from '@/utils/constants'
 
 /**
  * Wrapped Taro.request with JWT interceptor + 401 retry.
+ * Does NOT auto-fetch demo token — user must explicitly log in.
  */
 export interface RequestOptions {
   url: string
@@ -26,47 +27,13 @@ export async function getToken(): Promise<string | undefined> {
   }
 }
 
-async function _getToken(): Promise<string | undefined> {
-  return getToken()
-}
-
-async function fetchDevToken(): Promise<string | undefined> {
-  try {
-    const res = await Taro.request<Record<string, unknown>>({
-      url: `${API_BASE_URL}/api/v1/auth/demo-token`,
-      method: 'POST',
-      timeout: 10000,
-    })
-    const token = (res.data as Record<string, unknown>)['access_token'] as
-      | string
-      | undefined
-    if (token) {
-      Taro.setStorageSync(TOKEN_STORAGE_KEY, token)
-    }
-    return token
-  } catch {
-    return undefined
-  }
-}
-
-async function ensureToken(): Promise<string | undefined> {
-  let token = await getToken()
-  if (!token) {
-    token = await fetchDevToken()
-  }
-  return token
-}
-
 export async function request<T = unknown>(
   options: RequestOptions,
   isRetry = false,
 ): Promise<T> {
   const { url, method = 'GET', data, header = {}, timeout = 30000 } = options
 
-  let token = await getToken()
-  if (!token && !isRetry) {
-    token = await fetchDevToken()
-  }
+  const token = await getToken()
 
   const authHeader: Record<string, string> = {}
   if (token) {
@@ -89,18 +56,11 @@ export async function request<T = unknown>(
     return res.data
   } catch (err: unknown) {
     const httpErr = err as { statusCode?: number; data?: Record<string, unknown> }
-    if (httpErr.statusCode === 401 && !isRetry) {
-      // Token expired — refresh and retry once
-      const newToken = await fetchDevToken()
-      if (newToken) {
-        return request<T>(options, true)
-      }
+    if (httpErr.statusCode === 401 && !isRetry && token) {
+      // Token expired — user needs to log in again
+      // We do NOT auto-fetch demo token; user must explicitly log in
+      Taro.removeStorageSync(TOKEN_STORAGE_KEY)
     }
     throw err
   }
-}
-
-/** Ensure the user is authenticated (fetch dev token if needed). */
-export async function ensureAuthenticated(): Promise<void> {
-  await ensureToken()
 }
