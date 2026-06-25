@@ -28,11 +28,24 @@ export default function LoginPage() {
     setIsProcessing(true)
     try {
       await wxLogin()
-      const needsBinding = useAuthStore.getState().needsBinding
-      if (needsBinding) {
-        Taro.navigateTo({ url: '/pages/bind-account/index' })
+      const state = useAuthStore.getState()
+      if (state.needsBinding) {
+        // Show modal: bind now or skip
+        Taro.showModal({
+          title: '绑定账号',
+          content: '绑定手机或邮箱后可以跨设备同步数据。现在绑定还是稍后在个人中心绑定？',
+          confirmText: '现在绑定',
+          cancelText: '稍后绑定',
+          success: (res) => {
+            if (res.confirm) {
+              Taro.navigateTo({ url: '/pages/bind-account/index' })
+            } else {
+              Taro.switchTab({ url: '/pages/index/index' })
+            }
+          },
+        })
       } else {
-        // Navigate to home tab
+        // Already bound, go to home
         Taro.switchTab({ url: '/pages/index/index' })
       }
     } catch {

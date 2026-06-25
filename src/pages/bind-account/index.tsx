@@ -15,6 +15,18 @@ export default function BindAccountPage() {
   const [countdown, setCountdown] = useState(0)
   const [isProcessing, setIsProcessing] = useState(false)
 
+  const handleSkip = () => {
+    Taro.showModal({
+      title: '确认跳过',
+      content: '绑定手机或邮箱后可以跨设备同步数据，确定要跳过吗？',
+      success: (res) => {
+        if (res.confirm) {
+          Taro.switchTab({ url: '/pages/index/index' })
+        }
+      },
+    })
+  }
+
   // Countdown timer
   useEffect(() => {
     if (countdown <= 0) return undefined
@@ -146,6 +158,11 @@ export default function BindAccountPage() {
       >
         <Text>{isProcessing ? '绑定中...' : '完成绑定'}</Text>
       </View>
+
+      {/* Skip */}
+      <Text className='bind-skip' onClick={handleSkip}>
+        跳过绑定 ›
+      </Text>
     </View>
   )
 }

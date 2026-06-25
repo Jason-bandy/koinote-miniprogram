@@ -137,3 +137,12 @@
 .bind-submit--loading {
   opacity: 0.6;
 }
+
+/* Skip */
+.bind-skip {
+  text-align: center;
+  font-size: var(--text-13);
+  color: var(--color-text-hint);
+  margin: var(--space-md);
+  margin-bottom: calc(var(--space-md) + env(safe-area-inset-bottom));
+}

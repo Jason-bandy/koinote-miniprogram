@@ -112,14 +112,24 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   sendCode: async (phone?: string, email?: string) => {
     try {
-      await request({
+      const res = await request({
         url: '/api/v1/auth/send-code',
         method: 'POST',
         data: phone ? { phone, code_type: 'login' } : { email, code_type: 'login' },
       })
       Taro.showToast({ title: '验证码已发送', icon: 'success' })
-    } catch {
-      Taro.showToast({ title: '发送失败', icon: 'error' })
+      // In dev mode, the code is returned in the response - show it for testing
+      if (res && (res as any).code) {
+        Taro.showModal({
+          title: '验证码',
+          content: `测试验证码：${(res as any).code}`,
+          showCancel: false,
+        })
+      }
+    } catch (e: unknown) {
+      const err = e as { statusCode?: number; data?: Record<string, unknown> }
+      const msg = (err.data as Record<string, unknown> | undefined)?.['detail'] ?? '发送失败'
+      Taro.showToast({ title: String(msg), icon: 'error' })
     }
   },
 
