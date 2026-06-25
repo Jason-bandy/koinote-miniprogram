@@ -16,6 +16,14 @@ export default function MeetingPage() {
   const [isClassMode, setIsClassMode] = useState(false)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const asrRef = useRef<AsrService | null>(null)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  // Auto-scroll to bottom when new segments arrive
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    }
+  }, [segments, partialText])
 
   useEffect(() => {
     return () => {
@@ -140,11 +148,7 @@ export default function MeetingPage() {
       </View>
 
       {/* Transcript */}
-      <ScrollView
-        scrollY
-        scrollIntoView='bottom'
-        className='meeting-transcript'
-      >
+      <View ref={scrollRef} className='meeting-transcript'>
         {state === 'idle' && segments.length === 0 && (
           <View className='meeting-idle'>
             <Text className='meeting-idle-icon'>
@@ -166,7 +170,7 @@ export default function MeetingPage() {
         {partialText && (
           <Text className='transcript-line transcript-line--partial'>{partialText}</Text>
         )}
-      </ScrollView>
+      </View>
 
       {/* Error */}
       {errorMessage && (
@@ -175,34 +179,46 @@ export default function MeetingPage() {
         </View>
       )}
 
-      {/* Timer */}
-      {state === 'recording' && (
-        <View className='meeting-timer'>
-          <View className='meeting-rec-dot' />
-          <Text className='meeting-timer-text'>{formatTime(duration)}</Text>
-        </View>
-      )}
-
-      {/* Record button */}
+      {/* Bottom controls */}
       <View className='meeting-controls'>
-        {state === 'connecting' || state === 'processing' ? (
-          <View className='record-btn record-btn--loading'>
-            <Text className='record-btn-text'>
-              {state === 'processing' ? 'AI 生成中...' : '连接中...'}
-            </Text>
-          </View>
-        ) : state === 'recording' ? (
-          <View className='record-btn record-btn--recording' onClick={stopRecording}>
-            <Text className='record-btn-text'>⏹</Text>
-          </View>
-        ) : (
-          <View className='record-btn' onClick={startRecording}>
-            <Text className='record-btn-text'>🎙</Text>
+        {/* Wave visualizer */}
+        {state === 'recording' && (
+          <View className='wave-visualizer'>
+            {Array.from({ length: 32 }).map((_, i) => (
+              <View
+                key={i}
+                className='wave-bar'
+                style={{
+                  animationDelay: `${i * 50}ms`,
+                }}
+              />
+            ))}
           </View>
         )}
 
+        {/* Timer */}
+        {state === 'recording' && (
+          <View className='timer-row'>
+            <View className='rec-dot' />
+            <Text className='timer-text'>{formatTime(duration)}</Text>
+          </View>
+        )}
+
+        {/* Record button */}
+        <View
+          className={`record-button ${state === 'recording' ? 'record-button--recording' : ''} ${state === 'connecting' || state === 'processing' ? 'record-button--loading' : ''}`}
+          onClick={state === 'idle' ? startRecording : state === 'recording' ? stopRecording : undefined}
+        >
+          {state === 'connecting' || state === 'processing' ? (
+            <View className='loading-spinner' />
+          ) : (
+            <Text className='record-button-icon'>{state === 'idle' ? '🎤' : '⏹'}</Text>
+          )}
+        </View>
+
+        {/* Status label */}
         {state !== 'idle' && (
-          <Text className='meeting-status'>
+          <Text className='status-label'>
             {state === 'connecting' && '正在连接实时转写服务...'}
             {state === 'recording' && '转写中 · 轻触停止'}
             {state === 'processing' && 'AI 生成会议纪要中...'}

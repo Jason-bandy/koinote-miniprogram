@@ -213,13 +213,13 @@ export class AsrService {
       }
     })
 
-    // Start recording
+    // Start recording with smaller frame size for lower latency
     this.recorder.start({
       format: 'PCM',
       sampleRate: 16000,
       numberOfChannels: 1,
       encodeBitRate: 96000, // Max allowed: 96000 bps
-      frameSize: 80, // 50ms per frame at 16kHz
+      frameSize: 40, // 25ms per frame at 16kHz (lower latency)
     })
   }
 
