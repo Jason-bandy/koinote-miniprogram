@@ -18,8 +18,8 @@ async function upload () {
   const result = await ci.upload({
     project,
     robot: 1,
-    version: '1.0.2',
-    desc: '优化登录：支持跳过绑定，显示验证码，锦鲤 logo，录音 UI 优化',
+    version: '1.0.3',
+    desc: '录音登录检查：未登录提示跳转，微信登录后可直接录音',
     setting: {
       es6: true,
       enhance: true,
