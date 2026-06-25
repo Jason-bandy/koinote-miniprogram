@@ -18,8 +18,8 @@ async function upload () {
   const result = await ci.upload({
     project,
     robot: 1,
-    version: '1.0.7',
-    desc: '添加用户协议和隐私政策入口，符合微信审核要求',
+    version: '1.0.8',
+    desc: '绑定账号页面添加用户协议和隐私政策入口',
     setting: {
       es6: true,
       enhance: true,
