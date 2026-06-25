@@ -71,6 +71,13 @@ export class AsrService {
   async start(): Promise<void> {
     if (this._isRunning) return
 
+    // Check if user is logged in
+    const token = Taro.getStorageSync(TOKEN_STORAGE_KEY)
+    if (!token) {
+      this._emitError('请先登录后使用录音功能')
+      return
+    }
+
     // Request microphone permission
     try {
       await Taro.authorize({ scope: 'scope.record' })

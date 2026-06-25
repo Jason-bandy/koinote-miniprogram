@@ -3,6 +3,7 @@ import Taro from '@tarojs/taro'
 import { useState, useRef, useEffect } from 'react'
 import { AsrService, type AsrSegment } from '@/services/asr'
 import { useRecordsStore } from '@/stores/records'
+import { TOKEN_STORAGE_KEY } from '@/utils/constants'
 import './index.scss'
 
 type RecordingState = 'idle' | 'connecting' | 'recording' | 'processing'
@@ -33,6 +34,23 @@ export default function MeetingPage() {
   }, [])
 
   const startRecording = async () => {
+    // Check if user is logged in
+    const token = Taro.getStorageSync(TOKEN_STORAGE_KEY)
+    if (!token) {
+      Taro.showModal({
+        title: '提示',
+        content: '请先登录后使用录音功能',
+        confirmText: '去登录',
+        cancelText: '取消',
+        success: (res) => {
+          if (res.confirm) {
+            Taro.navigateTo({ url: '/pages/login/index' })
+          }
+        },
+      })
+      return
+    }
+
     setSegments([])
     setPartialText('')
     setErrorMessage('')
