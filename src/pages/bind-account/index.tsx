@@ -15,6 +15,18 @@ export default function BindAccountPage() {
   const [countdown, setCountdown] = useState(0)
   const [isProcessing, setIsProcessing] = useState(false)
 
+  const openUserAgreement = () => {
+    Taro.navigateTo({
+      url: '/pages/webview/index?url=https://api.transkoi.luckjingle.com/api/apis/public/webview/appArticles/502',
+    })
+  }
+
+  const openPrivacyPolicy = () => {
+    Taro.navigateTo({
+      url: '/pages/webview/index?url=https://api.transkoi.luckjingle.com/api/apis/public/webview/appArticles/500',
+    })
+  }
+
   const handleSkip = () => {
     Taro.showModal({
       title: '确认跳过',
@@ -157,6 +169,20 @@ export default function BindAccountPage() {
         onClick={!isProcessing ? handleBind : undefined}
       >
         <Text>{isProcessing ? '绑定中...' : '完成绑定'}</Text>
+      </View>
+
+      {/* Agreement */}
+      <View className='bind-agreement'>
+        <Text className='bind-agreement-text'>
+          点击绑定即表示同意{' '}
+          <Text className='bind-agreement-link' onClick={openUserAgreement}>
+            《用户协议》
+          </Text>
+          {' '}和{' '}
+          <Text className='bind-agreement-link' onClick={openPrivacyPolicy}>
+            《隐私政策》
+          </Text>
+        </Text>
       </View>
 
       {/* Skip */}

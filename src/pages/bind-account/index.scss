@@ -138,6 +138,24 @@
   opacity: 0.6;
 }
 
+/* Agreement */
+.bind-agreement {
+  padding: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.bind-agreement-text {
+  font-size: var(--text-11);
+  color: var(--color-text-hint);
+  text-align: center;
+  line-height: var(--leading-relaxed);
+}
+
+.bind-agreement-link {
+  color: var(--color-meeting);
+  font-weight: var(--font-medium);
+}
+
 /* Skip */
 .bind-skip {
   text-align: center;
