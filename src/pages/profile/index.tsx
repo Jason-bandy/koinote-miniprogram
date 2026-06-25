@@ -32,6 +32,27 @@ export default function ProfilePage() {
     })
   }
 
+  const handleDeleteData = async () => {
+    Taro.showModal({
+      title: '确认删除数据',
+      content: '确定要删除所有个人数据吗？（记录、标签、报告等，账号保留）此操作不可恢复。',
+      confirmText: '删除',
+      cancelText: '取消',
+      confirmColor: '#DC2626',
+      success: async (res) => {
+        if (res.confirm) {
+          try {
+            await useAuthStore.getState().deleteMyData()
+            Taro.showToast({ title: '已删除', icon: 'success' })
+          } catch (e: unknown) {
+            const err = e as Error
+            Taro.showToast({ title: err.message || '删除失败', icon: 'error' })
+          }
+        }
+      },
+    })
+  }
+
   // ── Not logged in ──────────────────────────────────────────────────────
 
   if (!isAuthenticated) {
@@ -130,6 +151,12 @@ export default function ProfilePage() {
         <View className='profile-row' onClick={() => Taro.navigateTo({ url: '/pages/web-import/index' })}>
           <Text className='profile-row-icon'>🔗</Text>
           <Text className='profile-row-label'>链接导入</Text>
+          <Text className='profile-row-arrow'>›</Text>
+        </View>
+
+        <View className='profile-row' onClick={handleDeleteData}>
+          <Text className='profile-row-icon'>🗑️</Text>
+          <Text className='profile-row-label profile-row-danger'>删除个人数据</Text>
           <Text className='profile-row-arrow'>›</Text>
         </View>
 

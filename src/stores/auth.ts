@@ -21,6 +21,7 @@ interface AuthState {
   codeLogin: (phone: string | undefined, email: string | undefined, code: string) => Promise<void>
   bindAccount: (phone: string | undefined, email: string | undefined, code: string) => Promise<void>
   logout: () => Promise<void>
+  deleteMyData: () => Promise<void>
   fetchProfile: () => Promise<void>
   loadCachedUser: () => Promise<void>
 }
@@ -176,6 +177,22 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     }
     Taro.removeStorageSync(TOKEN_STORAGE_KEY)
     set({ user: null, token: null, isAuthenticated: false, needsBinding: false })
+  },
+
+  deleteMyData: async () => {
+    try {
+      await request({
+        url: '/api/v1/account/delete-data',
+        method: 'POST',
+      })
+      // Clear local data after successful deletion
+      Taro.removeStorageSync(TOKEN_STORAGE_KEY)
+      set({ user: null, token: null, isAuthenticated: false, needsBinding: false })
+    } catch (e: unknown) {
+      const err = e as { statusCode?: number; data?: Record<string, unknown> }
+      const msg = (err.data as Record<string, unknown> | undefined)?.['detail'] ?? '删除失败'
+      throw new Error(msg)
+    }
   },
 
   fetchProfile: async () => {
