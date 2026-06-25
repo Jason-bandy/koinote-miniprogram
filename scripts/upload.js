@@ -18,8 +18,8 @@ async function upload () {
   const result = await ci.upload({
     project,
     robot: 1,
-    version: '1.0.4',
-    desc: '新增删除个人数据：Profile 页面可删除记录/标签/报告，保留账号',
+    version: '1.0.6',
+    desc: '修复审核：隐藏手机号显示，只展示绑定状态',
     setting: {
       es6: true,
       enhance: true,

@@ -69,7 +69,7 @@ export default function HomePage() {
           <View className='home-logo'>
             <Image className='home-logo-icon' src='/assets/icons/koi-logo-128.png' mode='aspectFit' />
           </View>
-          <Text className='home-title'>KoiNote</Text>
+          <Text className='home-title'>锦鲤笔记</Text>
         </View>
         <Text className='home-header-action' onClick={() => Taro.switchTab({ url: '/pages/search/index' })}>
           🔔

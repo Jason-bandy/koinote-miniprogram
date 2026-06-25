@@ -94,16 +94,6 @@ export default function ProfilePage() {
       <View className='profile-section'>
         <Text className='section-title'>账号信息</Text>
 
-        {user?.phone && (
-          <View className='profile-row'>
-            <Text className='profile-row-icon'>📱</Text>
-            <View className='profile-row-content'>
-              <Text className='profile-row-label'>手机号</Text>
-              <Text className='profile-row-value'>{user.phone}</Text>
-            </View>
-          </View>
-        )}
-
         {user?.email && (
           <View className='profile-row'>
             <Text className='profile-row-icon'>📧</Text>
@@ -125,6 +115,16 @@ export default function ProfilePage() {
               >
                 去绑定 ›
               </Text>
+            </View>
+          </View>
+        )}
+
+        {user?.phone && !user?.email && (
+          <View className='profile-row'>
+            <Text className='profile-row-icon'>✅</Text>
+            <View className='profile-row-content'>
+              <Text className='profile-row-label'>已绑定手机号</Text>
+              <Text className='profile-row-value'>已绑定</Text>
             </View>
           </View>
         )}
